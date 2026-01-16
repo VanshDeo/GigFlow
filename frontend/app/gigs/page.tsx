@@ -1,14 +1,26 @@
 
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import axios from 'axios';
 import GigCard from '@/components/GigCard';
 import { useSearchParams } from 'next/navigation';
 import { motion } from 'framer-motion';
 
-const GigsPage = () => {
-    const [gigs, setGigs] = useState([]);
+const GigsContent = () => {
+    interface Gig {
+        _id: string;
+        title: string;
+        budget: number;
+        description: string;
+        ownerId: {
+            name: string;
+            email: string;
+        };
+        createdAt: string;
+    }
+
+    const [gigs, setGigs] = useState<Gig[]>([]);
     const [loading, setLoading] = useState(true);
     const searchParams = useSearchParams();
     const keyword = searchParams.get('keyword') || '';
@@ -53,7 +65,7 @@ const GigsPage = () => {
                         </div>
                     ) : (
                         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-                            {gigs.map((gig: any) => (
+                            {gigs.map((gig) => (
                                 <motion.div
                                     key={gig._id}
                                     initial={{ opacity: 0 }}
@@ -68,6 +80,14 @@ const GigsPage = () => {
                 </>
             )}
         </div>
+    );
+};
+
+const GigsPage = () => {
+    return (
+        <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Loading...</div>}>
+            <GigsContent />
+        </Suspense>
     );
 };
 

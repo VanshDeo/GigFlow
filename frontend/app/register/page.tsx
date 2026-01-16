@@ -42,8 +42,12 @@ const RegisterPage = () => {
             });
             dispatch(setCredentials(res.data));
             router.push('/');
-        } catch (err: any) {
-            setError(err.response?.data?.message || err.message);
+        } catch (err: unknown) {
+            if (axios.isAxiosError(err)) {
+                setError(err.response?.data?.message || err.message);
+            } else {
+                setError('An unexpected error occurred');
+            }
         }
     };
 

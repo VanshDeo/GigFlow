@@ -10,10 +10,32 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 
 const DashboardPage = () => {
+    interface Freelancer {
+        _id: string;
+        name: string;
+        email: string;
+    }
+
+    interface Bid {
+        _id: string;
+        freelancerId: Freelancer;
+        message: string;
+        price: number;
+        status: string;
+    }
+
+    interface Gig {
+        _id: string;
+        title: string;
+        createdAt: string;
+        status: string;
+        budget: number;
+    }
+
     const { userInfo } = useSelector((state: RootState) => state.auth);
     const router = useRouter();
-    const [myGigs, setMyGigs] = useState([]);
-    const [selectedGigBids, setSelectedGigBids] = useState<any[]>([]);
+    const [myGigs, setMyGigs] = useState<Gig[]>([]);
+    const [selectedGigBids, setSelectedGigBids] = useState<Bid[]>([]);
     const [selectedGigId, setSelectedGigId] = useState<string | null>(null);
     const [loading, setLoading] = useState(true);
 
@@ -88,11 +110,11 @@ const DashboardPage = () => {
 
                 {myGigs.length === 0 ? (
                     <div className="p-8 text-center text-gray-500">
-                        You haven't posted any gigs yet.
+                        You haven&apos;t posted any gigs yet.
                     </div>
                 ) : (
                     <div className="divide-y divide-gray-200">
-                        {myGigs.map((gig: any) => (
+                        {myGigs.map((gig) => (
                             <div key={gig._id} className="p-6">
                                 <div className="flex flex-col md:flex-row justify-between items-start md:items-center">
                                     <div>
@@ -149,7 +171,7 @@ const DashboardPage = () => {
                                                                 </button>
                                                             ) : (
                                                                 <span className={`px-3 py-1 rounded text-sm font-bold ${bid.status === 'hired' ? 'bg-green-100 text-green-700' :
-                                                                        bid.status === 'rejected' ? 'bg-red-100 text-red-700' : 'bg-gray-200 text-gray-600'
+                                                                    bid.status === 'rejected' ? 'bg-red-100 text-red-700' : 'bg-gray-200 text-gray-600'
                                                                     }`}>
                                                                     {bid.status.toUpperCase()}
                                                                 </span>

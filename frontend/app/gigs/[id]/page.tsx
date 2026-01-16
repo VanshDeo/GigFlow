@@ -14,7 +14,20 @@ const GigDetailsPage = () => {
     const { id } = params;
     const { userInfo } = useSelector((state: RootState) => state.auth);
 
-    const [gig, setGig] = useState<any>(null);
+    interface Gig {
+        _id: string;
+        title: string;
+        description: string;
+        budget: number;
+        status: string;
+        createdAt: string;
+        ownerId: {
+            _id: string;
+            name: string;
+        };
+    }
+
+    const [gig, setGig] = useState<Gig | null>(null);
     const [loading, setLoading] = useState(true);
     const [isBidModalOpen, setIsBidModalOpen] = useState(false);
 

@@ -72,7 +72,7 @@ export default function Home() {
                 <h4 className="flex items-center text-xl font-bold mb-2">
                   Protected payments, every time
                 </h4>
-                <p className="text-gray-600 text-lg">Always know what you'll pay upfront. Your payment isn't released until you approve the work.</p>
+                <p className="text-gray-600 text-lg">Always know what you&apos;ll pay upfront. Your payment isn&apos;t released until you approve the work.</p>
               </div>
             </div>
           </div>

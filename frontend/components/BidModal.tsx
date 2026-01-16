@@ -27,8 +27,12 @@ const BidModal = ({ gigId, isOpen, onClose }: BidModalProps) => {
             );
             onClose();
             alert('Bid submitted successfully!');
-        } catch (err: any) {
-            setError(err.response?.data?.message || 'Failed to submit bid');
+        } catch (err: unknown) {
+            if (axios.isAxiosError(err)) {
+                setError(err.response?.data?.message || 'Failed to submit bid');
+            } else {
+                setError('An unexpected error occurred');
+            }
         } finally {
             setLoading(false);
         }
