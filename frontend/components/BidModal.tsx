@@ -21,7 +21,7 @@ const BidModal = ({ gigId, isOpen, onClose }: BidModalProps) => {
         setError('');
 
         try {
-            await axios.post('http://localhost:5000/api/bids',
+            await axios.post('http://localhost:8000/api/bids',
                 { gigId, price, message },
                 { withCredentials: true }
             );

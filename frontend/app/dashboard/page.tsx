@@ -47,7 +47,7 @@ const DashboardPage = () => {
 
         const fetchGigs = async () => {
             try {
-                const { data } = await axios.get('http://localhost:5000/api/gigs/my', {
+                const { data } = await axios.get('http://localhost:8000/api/gigs/my', {
                     withCredentials: true,
                 });
                 setMyGigs(data);
@@ -69,7 +69,7 @@ const DashboardPage = () => {
         }
 
         try {
-            const { data } = await axios.get(`http://localhost:5000/api/bids/${gigId}`, {
+            const { data } = await axios.get(`http://localhost:8000/api/bids/${gigId}`, {
                 withCredentials: true,
             });
             setSelectedGigBids(data);
@@ -84,7 +84,7 @@ const DashboardPage = () => {
         if (!confirm('Are you sure you want to hire this freelancer? This action cannot be undone.')) return;
 
         try {
-            await axios.patch(`http://localhost:5000/api/bids/${bidId}/hire`, {}, {
+            await axios.patch(`http://localhost:8000/api/bids/${bidId}/hire`, {}, {
                 withCredentials: true,
             });
             alert('Freelancer hired successfully!');

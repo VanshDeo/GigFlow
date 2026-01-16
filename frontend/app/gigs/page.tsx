@@ -29,7 +29,7 @@ const GigsContent = () => {
         const fetchGigs = async () => {
             try {
                 setLoading(true);
-                const { data } = await axios.get(`http://localhost:5000/api/gigs?keyword=${keyword}`);
+                const { data } = await axios.get(`http://localhost:8000/api/gigs?keyword=${keyword}`);
                 setGigs(data);
             } catch (error) {
                 console.error(error);

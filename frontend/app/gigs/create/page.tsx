@@ -27,7 +27,7 @@ const CreateGigPage = () => {
         e.preventDefault();
         try {
             await axios.post(
-                'http://localhost:5000/api/gigs',
+                'http://localhost:8000/api/gigs',
                 {
                     title,
                     description,

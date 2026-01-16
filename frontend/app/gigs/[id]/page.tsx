@@ -34,7 +34,7 @@ const GigDetailsPage = () => {
     useEffect(() => {
         const fetchGig = async () => {
             try {
-                const { data } = await axios.get(`http://localhost:5000/api/gigs/${id}`);
+                const { data } = await axios.get(`http://localhost:8000/api/gigs/${id}`);
                 setGig(data);
             } catch (error) {
                 console.error(error);

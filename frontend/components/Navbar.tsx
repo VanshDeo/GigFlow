@@ -35,7 +35,7 @@ const Navbar = () => {
     const logoutHandler = async () => {
         try {
             // Optional: Call backend logout
-            await axios.post('http://localhost:5000/api/auth/logout');
+            await axios.post('http://localhost:8000/api/auth/logout');
         } catch (err) {
             console.error(err);
         }
